@@ -1,0 +1,1 @@
+api: FLASK_APP=oautom.examples.flask.webapp:app FLASK_ENV=development flask run
