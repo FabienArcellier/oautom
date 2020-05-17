@@ -2,17 +2,17 @@
 
 from flask import Flask, jsonify
 
-from execution.bash_execution import BashExecution
+from oautom.execution.bash_execution import BashExecution
 from oautom import OAutom, Flow, OAutomMode
 
 app = Flask(__name__)
 
 oautom = OAutom(mode=OAutomMode.background)
 
-flow = Flow('flow 1', app=oautom)
-step1 = BashExecution('execution 1', flow=flow, command='touch /tmp/file1')
-step2 = BashExecution('sleep', flow=flow, command='sleep 60')
-step3 = BashExecution('execution 2', flow=flow, command='touch /tmp/file2')
+flow1 = Flow('flow 1', app=oautom)
+step1 = BashExecution('execution 1', flow=flow1, command='touch /tmp/file1')
+step2 = BashExecution('sleep', flow=flow1, command='sleep 60')
+step3 = BashExecution('execution 2', flow=flow1, command='touch /tmp/file2')
 step2.depends(step1)
 step3.depends(step2)
 oautom.run()
@@ -29,7 +29,7 @@ def logs_flow():
 
 
 @app.route("/start/<flow>")
-def start_flow(flow : str):
+def start_flow(flow: str):
     result = ("OK", 200)
     if not oautom.start(flow):
         result = ("ALREADY RUNNING", 200)

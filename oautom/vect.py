@@ -1,9 +1,9 @@
 import copy
 from collections import OrderedDict
 from datetime import datetime
-from typing import List, Tuple
+from typing import List
 
-from execution.execution import Execution, ExecutionState
+from oautom.execution.execution import Execution, ExecutionState
 
 
 class Vect:

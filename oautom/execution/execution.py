@@ -1,3 +1,4 @@
+# pylint: disable=simplifiable-if-expression
 from abc import abstractmethod
 from enum import Enum
 from typing import List
@@ -5,8 +6,8 @@ from typing import List
 
 class ExecutionState(str, Enum):
     disable = 'disable'
-    waiting = 'waiting',
-    running = 'running',
+    waiting = 'waiting'
+    running = 'running'
     done = 'done'
 
 

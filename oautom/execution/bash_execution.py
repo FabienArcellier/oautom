@@ -17,7 +17,7 @@ class BashExecution(Execution):
 
         return check
 
-    def __init__(self, name, flow: 'Flow', command:str):
+    def __init__(self, name, flow: 'Flow', command: str):
         super().__init__(name, flow)
         self._command = command
         self._proc = None  # type: Popen

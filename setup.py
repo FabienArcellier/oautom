@@ -14,10 +14,9 @@ setup(
     ],
     extras_require={
         'dev': [
-            'honcho',
             'pylint',
             'coverage',
-            'api_based_workflow'
+            'flask'
         ]
     },
     classifier= [

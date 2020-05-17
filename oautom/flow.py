@@ -1,5 +1,3 @@
-import copy
-
 from vect import Vect
 
 

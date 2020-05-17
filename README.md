@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/FabienArcellier/blueprint-webapp-flask.svg?branch=master)](https://travis-ci.org/FabienArcellier/blueprint-webapp-flask)
-
 # OAutom
 
 `oautom` is **educational** workflow engine implementation able to
@@ -7,10 +5,10 @@ run step by step treatment using directed acyclic graph (dag).
 
 It's not designed to use in production environment :
 
-* this workflow engine is not safe because all the state has been store `in-memory`
-* this workflow engine does not support execution concurrency
-* this workflow engine does not support `Vect` parameter
-* this workflow engine does not implement variable forwarding
+* this workflow engine is not safe because all the state are stored `in-memory`
+* this workflow engine does not support `Flow` execution concurrency
+* this workflow engine does not support to give parameter to an execution
+* this workflow engine does not implement variable forwarding between execution step
 * this workflow engine does not implement dag integrity checking
 
 if you are looking for a mature workflow engine, you should take a look to
@@ -30,12 +28,13 @@ step2.depends(step1)
 step3.depends(step2)
 ```
 
-more example in [oautom/examples](oautom/examples)
+more examples in [oautom/examples](oautom/examples)
 
 ## Concepts
 
-* a developer can implement an Execution that run a system and check if it's finish
-* a developer can implement a Flow as a directed acyclic graph of steps
+* `Execution` should run async command in `run` and check completion through `check`
+    * `BashExecution` allows to run shell command
+* a `Flow` is a directed acyclic graph of steps
 * a `Vect` is a running instance of a `Flow`
 * only one instance of each `Flow` may run in same time
 
@@ -59,15 +58,15 @@ make start
 You can find the latest version to ...
 
 ```bash
-git clone git@github.com:FabienArcellier/blueprint-webapp-flask.git
+git clone https://github.com/FabienArcellier/oautom.git
 ```
+
+more information on how to use oautom in [oautom/examples](oautom/examples)
 
 ## Usage
 
-You can run the application with the following command
-
-```python
-make start
+```bash
+pip install https://github.com/FabienArcellier/oautom.git
 ```
 
 ## Contributing

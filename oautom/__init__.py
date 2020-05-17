@@ -52,7 +52,11 @@ class OAutom:
 
     def plan(self, flow_name: str, days: int = 0, hours: int = 0, minutes: int = 0):
         flow_vect = partial(self.start, flow_name)
-        self._scheduler.add_job(flow_vect, trigger="interval", days=days, hours=hours, minutes=minutes)
+        self._scheduler.add_job(flow_vect,
+                                trigger="interval",
+                                days=days,
+                                hours=hours,
+                                minutes=minutes)
 
     def status(self, flow_name: str):
         result = {}
@@ -67,7 +71,9 @@ class OAutom:
         else:
             scheduler = BlockingScheduler()
 
-        self._job = scheduler.add_job(func=self._move_vects_if_ready, trigger="interval", seconds=10)
+        self._job = scheduler.add_job(func=self._move_vects_if_ready,
+                                      trigger="interval",
+                                      seconds=10)
         return scheduler
 
     def _move_vects_if_ready(self):
