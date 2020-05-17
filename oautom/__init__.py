@@ -25,7 +25,6 @@ class OAutom:
         self._vects = {}  # type: Dict[str, Vect]
         self._logged_vects = []  # type: List[Vect]
         self._scheduler = self._event_loop(mode)
-        self._scheduler.start()
 
     def flows(self):
         return [flow.name() for flow in self._flows.values()]
@@ -35,6 +34,9 @@ class OAutom:
 
     def register_flow(self, flow: 'Flow'):
         self._flows[flow.name()] = flow
+
+    def run(self):
+        self._scheduler.start()
 
     def start(self, flow_name: str) -> bool:
         result = False

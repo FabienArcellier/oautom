@@ -15,6 +15,7 @@ step2 = BashExecution('sleep', flow=flow, command='sleep 60')
 step3 = BashExecution('execution 2', flow=flow, command='touch /tmp/file2')
 step2.depends(step1)
 step3.depends(step2)
+oautom.run()
 
 
 @app.route("/flows")
