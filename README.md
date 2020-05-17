@@ -66,7 +66,7 @@ more information on how to use oautom in [oautom/examples](oautom/examples)
 ## Usage
 
 ```bash
-pip install https://github.com/FabienArcellier/oautom.git
+pip install oautom
 ```
 
 ## Contributing
