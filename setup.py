@@ -10,13 +10,14 @@ setup(
     license='MIT',
     long_description=open('README.md').read(),
     install_requires = [
+        'apscheduler'
     ],
     extras_require={
         'dev': [
             'honcho',
             'pylint',
-            'coverage'
-            'flask'
+            'coverage',
+            'api_based_workflow'
         ]
     },
     classifier= [

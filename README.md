@@ -3,7 +3,15 @@
 # OAutom
 
 `oautom` is **educational** workflow engine implementation able to
-run step by step treatment using directed acyclic graph (dag). It's not designed to use in production environment.
+run step by step treatment using directed acyclic graph (dag). 
+
+It's not designed to use in production environment :
+
+* this workflow engine is not safe because all the state has been store `in-memory`
+* this workflow engine does not support execution concurrency
+* this workflow engine does not support `Vect` parameter
+* this workflow engine does not implement variable forwarding
+* this workflow engine does not implement dag integrity checking
 
 if you are looking for a mature workflow engine, you should take a look to
 [`airflow`](https://airflow.apache.org/docs/stable/tutorial.html#setting-up-dependencies) from
@@ -12,20 +20,14 @@ which oautom reuse the declarative API.
 ## Getting started
 
 ```python
-oautom = OAutom(mode='background')
-
-# check execution status every minutes
-oautom.refresh_schedule(minutes=1)
+oautom = OAutom(mode=OAutomMode.background)
 
 flow = Flow('flow 1', app=oautom)
-step1 = LambdaExecution('lambda_name', flow=flow)
-step2 = FargateExecution('task_definition', flow=flow)
-step3 = LambdaExecution('lambda_arn', flow=flow)
+step1 = BashExecution('execution 1', flow=flow, command='touch /tmp/file1')
+step2 = BashExecution('sleep', flow=flow, command='sleep 60')
+step3 = BashExecution('execution 2', flow=flow, command='touch /tmp/file2')
 step2.depends(step1)
 step3.depends(step2)
-
-oautom.start('flow 1')
-status = oautom.status('flow 1')
 ```
 
 more example in [oautom/examples](oautom/examples)
@@ -34,7 +36,8 @@ more example in [oautom/examples](oautom/examples)
 
 * a developer can implement an Execution that run a system and check if it's finish
 * a developer can implement a Flow as a directed acyclic graph of steps
-* only one instance of each flow may run in same time
+* a `Vect` is a running instance of a `Flow`
+* only one instance of each `Flow` may run in same time
 
 ### System requirements
 

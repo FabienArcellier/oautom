@@ -4,10 +4,10 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-blueprint-webapp-flask = {editable = true,extras = ["dev"],path = "."}
+oautom = {editable = true,extras = ["dev"],path = "."}
 
 [packages]
-blueprint-webapp-flask = {editable = true,path = "."}
+oautom = {editable = true,path = "."}
 
 [requires]
 python_version = "3.6"

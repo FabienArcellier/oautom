@@ -1,9 +1,11 @@
-from oautom import OAutom
+import copy
+
+from vect import Vect
 
 
 class Flow:
 
-    def __init__(self, name: str, app: OAutom):
+    def __init__(self, name: str, app: 'OAutom'):
         self._name = name
         self._executions = []
         app.register_flow(self)
@@ -13,3 +15,7 @@ class Flow:
 
     def register_execution(self, execution: 'Execution'):
         self._executions.append(execution)
+
+    def vect(self):
+        vect = Vect(self._name, self._executions)
+        return vect
