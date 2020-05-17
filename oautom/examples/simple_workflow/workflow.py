@@ -12,5 +12,3 @@ step3.depends(step2)
 
 oautom.plan('flow 1', minutes=1)
 oautom.run()
-
-

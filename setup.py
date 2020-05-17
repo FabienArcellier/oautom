@@ -12,7 +12,8 @@ setup(
     long_description_content_type='text/markdown',
     url="https://github.com/FabienArcellier/oautom",
     install_requires = [
-        'apscheduler'
+        'apscheduler',
+        'boto3'
     ],
     extras_require={
         'dev': [

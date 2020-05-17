@@ -2,6 +2,7 @@
 
 from flask import Flask, jsonify
 
+from execution.lambda_execution import LambdaExecution
 from oautom.execution.bash_execution import BashExecution
 from oautom import OAutom, Flow, OAutomMode
 
@@ -10,15 +11,11 @@ app = Flask(__name__)
 oautom = OAutom(mode=OAutomMode.background)
 
 flow1 = Flow('flow 1', app=oautom)
-step1 = BashExecution('execution 1', flow=flow1, command='touch /tmp/file1')
+step1 = LambdaExecution('execution lambda 1', flow=flow1, lambda_function='hello_world_1')
 step2 = BashExecution('sleep', flow=flow1, command='sleep 60')
 step3 = BashExecution('execution 2', flow=flow1, command='touch /tmp/file2')
-step4 = BashExecution('sleep 2', flow=flow1, command='sleep 30')
-step5 = BashExecution('execution 3', flow=flow1, command='touch /tmp/file3')
 step2.depends(step1)
 step3.depends(step2)
-step4.depends(step2)
-step5.depends(step4)
 oautom.run()
 
 
