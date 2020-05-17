@@ -1,5 +1,7 @@
 # OAutom
 
+![ci](https://github.com/FabienArcellier/oautom/workflows/ci/badge.svg)
+
 `oautom` is **educational** workflow engine implementation able to
 run step by step treatment using directed acyclic graph (dag). 
 
