@@ -1,0 +1,2 @@
+class VectAlreadyRunningException(Exception):
+    pass

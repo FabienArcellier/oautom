@@ -5,7 +5,7 @@ from typing import List
 
 
 class ExecutionState(str, Enum):
-    disable = 'disable'
+    disabled = 'disabled'
     waiting = 'waiting'
     running = 'running'
     done = 'done'
@@ -17,7 +17,7 @@ class Execution:
         self._name = name
         flow.register_execution(self)
         self._depends = []  # type: List[Execution]
-        self._status = ExecutionState.disable
+        self._status = ExecutionState.disabled
 
     def depends(self, previous: 'Execution'):
         self._depends.append(previous)

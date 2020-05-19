@@ -5,6 +5,11 @@ from oautom.execution.execution import Execution
 
 class BashExecution(Execution):
 
+    def __init__(self, name, flow: 'Flow', command: str):
+        super().__init__(name, flow)
+        self._command = command
+        self._proc = None  # type: Popen
+
     def run(self):
         super().run()
         self._proc = Popen(self._command, shell=True)
@@ -17,7 +22,3 @@ class BashExecution(Execution):
 
         return check
 
-    def __init__(self, name, flow: 'Flow', command: str):
-        super().__init__(name, flow)
-        self._command = command
-        self._proc = None  # type: Popen

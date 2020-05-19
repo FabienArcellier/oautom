@@ -3,9 +3,15 @@
 ![ci](https://github.com/FabienArcellier/oautom/workflows/ci/badge.svg)
 
 `oautom` is **educational** workflow engine implementation able to
-run step by step treatment using directed acyclic graph (dag). 
+run step by step treatment using directed acyclic graph (dag).
 
-It's not designed to use in production environment :
+The purpose of a workflow engine is to manage long running tasks (few hours to few days).
+It allow to have an overview of serie of tasks.
+
+OAutom is design to be embedded as a library in command line application or in a single-thread
+webapplication. 
+
+OAutom is not designed to be use on a production environment because :
 
 * this workflow engine is not safe because all the state are stored `in-memory`
 * this workflow engine does not support `Flow` execution concurrency

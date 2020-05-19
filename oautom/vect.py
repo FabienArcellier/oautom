@@ -1,5 +1,4 @@
 import copy
-from collections import OrderedDict
 from datetime import datetime
 from typing import List
 
@@ -7,11 +6,14 @@ from oautom.execution.execution import Execution, ExecutionState
 
 
 class Vect:
+    """
+    an instance of execution
+    """
 
     def __init__(self, name: str, executions: List[Execution]):
         executions = copy.deepcopy(executions)
         self._name = name
-        self._executions = executions  # type: List[Execution]
+        self._executions = executions
         self._start_date = datetime.now()
         for execution in self._executions:
             execution.initialize()
@@ -29,7 +31,7 @@ class Vect:
         return ended
 
     def status(self) -> dict:
-        status = OrderedDict()
+        status = dict()
         status['name'] = self._name
         status['ended'] = self.ended()
         status['start_date'] = self._start_date.isoformat()
